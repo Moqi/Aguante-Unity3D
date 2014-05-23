@@ -10,10 +10,13 @@ public class BlockScript : MonoBehaviour {
 		// GameObject
 		public GameObject playerObject;
 		
-		
+		public double chronometer;
 
 		// Use this for initialization
 		void Start () {
+
+			chronometer = 0;
+
 			// create the force
 			ballInitialForce = new Vector2 (50.0f,150.0f);
 			
@@ -26,6 +29,9 @@ public class BlockScript : MonoBehaviour {
 		
 		// Update is called once per frame
 		void Update () {
+
+		//ScoreClass.score += Time.deltaTime;
+
 		// check for user input
 		if (Input.GetButtonDown ("Jump") == true) {
 			// check if is the first play
@@ -54,11 +60,13 @@ public class BlockScript : MonoBehaviour {
 			
 		}
 
-	/*void OnCollisionEnter2D(Collision2D collision){
-		if (ballIsActive) {
-			Debug.Log("cagaste!");
-			//audio.PlayOneShot (hitSound);
+		void OnCollisionEnter2D(Collision2D col){
+		if ( col.gameObject.name == "Player" ) {
+			Debug.Log("colsion BlockScript");
+			//Time.timeScale = 0; //detiene la escena
+			//Destroy(col.gameObject);
+			
 		}
-	}*/
+	}
 
 	}
