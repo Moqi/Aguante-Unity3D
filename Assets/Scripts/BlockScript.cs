@@ -3,25 +3,22 @@ using System.Collections;
 
 public class BlockScript : MonoBehaviour {
 
-		private bool ballIsActive;
+		
 		private Vector3 ballPosition;
 		private Vector2 ballInitialForce;
 		
 		// GameObject
 		public GameObject playerObject;
 		
-		public double chronometer;
-
 		// Use this for initialization
 		void Start () {
-
-			chronometer = 0;
 
 			// create the force
 			ballInitialForce = new Vector2 (50.0f,150.0f);
 			
 			// set to inactive
-			ballIsActive = false;
+		GameManager.gameStarted = false;	
+	
 			
 			// ball position
 			ballPosition = transform.position;
@@ -35,19 +32,19 @@ public class BlockScript : MonoBehaviour {
 		// check for user input
 		if (Input.GetButtonDown ("Jump") == true) {
 			// check if is the first play
-			if (!ballIsActive){
+			if (!GameManager.gameStarted){
 				// reset the force
 				rigidbody2D.isKinematic = false;
 				
 				// add a force
 				rigidbody2D.AddForce(ballInitialForce);
 				
-				// set ball active
-				ballIsActive = !ballIsActive;
+				// set game active
+				GameManager.gameStarted = !GameManager.gameStarted;
 			}
 		}
 			
-			if (!ballIsActive && playerObject != null){
+		if (!GameManager.gameStarted && playerObject != null){
 				
 				// get and use the player position
 				ballPosition.x = playerObject.transform.position.x;
