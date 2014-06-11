@@ -16,13 +16,18 @@ public class BlockScript : MonoBehaviour {
 			// create the force
 			ballInitialForce = new Vector2 (50.0f,150.0f);
 			
-			// set to inactive
-		GameManager.gameStarted = false;	
-	
-			
+			// reset the force
+			rigidbody2D.isKinematic = false;
+		
+			// add a force
+			rigidbody2D.AddForce(ballInitialForce);
+		
 			// ball position
 			ballPosition = transform.position;
-		}
+
+			// set game active
+			GameManager.gameStarted = true;
+	}
 		
 		// Update is called once per frame
 		void Update () {
@@ -30,19 +35,7 @@ public class BlockScript : MonoBehaviour {
 		//ScoreClass.score += Time.deltaTime;
 
 		// check for user input
-		if (Input.GetButtonDown ("Jump") == true) {
-			// check if is the first play
-			if (!GameManager.gameStarted){
-				// reset the force
-				rigidbody2D.isKinematic = false;
-				
-				// add a force
-				rigidbody2D.AddForce(ballInitialForce);
-				
-				// set game active
-				GameManager.gameStarted = !GameManager.gameStarted;
-			}
-		}
+		//if (Input.GetButtonDown ("Jump") == true) {	}
 			
 		if (!GameManager.gameStarted && playerObject != null){
 				
@@ -53,8 +46,6 @@ public class BlockScript : MonoBehaviour {
 				// apply player X position to the object
 				transform.position = ballPosition;
 			}
-			
-			
 		}
 
 		void OnCollisionEnter2D(Collision2D col){
