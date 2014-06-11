@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Colission : MonoBehaviour {
 
-		void Start () {
+	void Start () {
 	}
 
 	void Update () {
@@ -13,7 +13,6 @@ public class Colission : MonoBehaviour {
 
 		if (col.gameObject.name == "Player") {
 
-
 			Debug.Log("colsion Collision chronometer => "+GameManager.score);
 			
 			Time.timeScale = 0; //esto congela la escena
@@ -21,6 +20,7 @@ public class Colission : MonoBehaviour {
 
 		}
 	}
+
 
 	void OnGUI()
 	{
@@ -44,12 +44,12 @@ public class Colission : MonoBehaviour {
 			GUILayout.EndArea ();
 		} else {
 				if (GameManager.gameStarted) {
-					GUILayout.BeginArea (new Rect ((Screen.width / 2) - 60, (Screen.height / 2) - 60, Screen.width, Screen.height));
+					GUILayout.BeginArea (new Rect (0, 0, Screen.width, Screen.height));
 					float val = GameManager.score;
 					GUI.Box (new Rect (0, 0, 150, 25), "Score: " + val);
 
 					float val2 = GameManager.bestScore;
-					GUI.Box (new Rect (0, 25, 150, 25), "BEST Score: " + val2);
+					GUI.Box (new Rect (150, 0, 150, 25), "BEST Score: " + val2);
 					GUILayout.EndArea ();
 				}
 		}
