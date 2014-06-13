@@ -37,6 +37,7 @@ public class Colission : MonoBehaviour {
 				Time.timeScale = 1; //reanuda la escena
 				GameManager.score = 0;
 				Application.LoadLevel ("SceneGame");
+				GameManager.gameOver = false;
 			}
 			if (GUI.Button (new Rect (0, 100, 150, 25), "View best scores")) {
 				Application.LoadLevel ("SceneScores");

@@ -23,8 +23,8 @@ public class PlayerScript : MonoBehaviour {
 			if (Input.touchCount>0){
 				Vector2 pos = Input.GetTouch(0).deltaPosition;//Input.GetTouch(0).position;
 
-				playerPosition.x += pos.x * playerVelocity;
-				playerPosition.y += pos.y * playerVelocity;
+				playerPosition.x += pos.x;// * playerVelocity;
+				playerPosition.y += pos.y;// * playerVelocity;
 			}
 
 
