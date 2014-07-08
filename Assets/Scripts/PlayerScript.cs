@@ -12,7 +12,10 @@ public class PlayerScript : MonoBehaviour {
 		// get the initial position of the game object
 		playerPosition = gameObject.transform.position;
 		previousTouch = new Vector2(playerPosition.x, playerPosition.y);
-		lerpTime = 0.1;
+		lerpTime = 0.1f;
+
+	
+
 	}
 	
 	// Update is called once per frame
@@ -22,12 +25,27 @@ public class PlayerScript : MonoBehaviour {
 						Time.timeScale = 0; //esto congela la escena
 				} else {
 
+			 //El objeto se mueve al punto seleccionado y compruebo si choco con algo.
+			if (Input.GetMouseButtonDown(0) ){
+				Vector3 p1 = transform.position;
+				Vector3 p2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+				//RaycastHit2D h = Physics2D.LinecastNonAlloc(p1, p2); //para ahorrar memoria
+			
+				RaycastHit2D hit = Physics2D.Linecast(p1, p2);
+				if (hit.collider != null ){
+					Debug.Log("choque con... "+ hit.collider.name);
+					transform.position = new Vector2(hit.point.x, hit.point.y);
+					GameManager.gameOver = true;
+				} else {
+					transform.position = new Vector2(p2.x,p2.y);
+				}
+			}
 
-
+			/*
 			if (Input.touches.Length > 0){
 				if (Input.touches[0].phase == TouchPhase.Began)
 				{
-					Vector2 actualTouch = new Vector2(Input.touches[0].deltaPosition.x,Input.touches[0].deltaPosition.y|);
+					Vector2 actualTouch = new Vector2(Input.touches[0].deltaPosition.x,Input.touches[0].deltaPosition.y);
 					Vector2.Lerp(previousTouch,actualTouch,lerpTime);
 
 					previousTouch = actualTouch;
@@ -40,7 +58,7 @@ public class PlayerScript : MonoBehaviour {
 				Vector2.Lerp(previousTouch,actualTouch,lerpTime);
 				previousTouch = actualTouch;
 
-			}
+			}*/
 
 			//ANDAAAAAAAAAAAA
 			/*if (Input.touches.Length > 0){
